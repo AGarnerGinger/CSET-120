@@ -1,19 +1,89 @@
-<!DOCTYPE html>>
+<!DOCTYPE html>
 <html lang="en">
     <head>
-        <title></title>
+        <title>Baratie - Home</title>
         <meta charset="utf-8">
         <link rel="stylesheet" type="text/css" href="style.css">
+        <style>
+            .baratie-logo, .baratie-logo-text{
+                display: block;
+                margin: 20px auto;
+                text-align: center;
+            }
+
+            .baratie-logo-text{
+                padding-bottom: 75px;
+                font-size: 50px;
+            }
+
+            #logo{
+                background-color: black;
+                border-radius: 100%;
+            }
+
+            .baratie-logo{
+                height: 300px;
+                width: auto;
+            }
+
+            header h1{
+                text-align: center;
+                margin: 10px 0 30px 0;
+                font-size: 45px;
+            }
+
+            section{
+                max-width: 900px;
+                margin: 0 auto 40px auto;
+                text-align: left;
+            }
+        </style>
     </head>
     <body>
+
+        <!--Header--->
         <header>
-            <h1>HELLO</h1>
+            <nav class="headernav">
+                <ul>
+                    <li>Baratie</li>
+                    <li><a href="">Home</a></li>
+                    <li><a href="customer/order.html">Order Now</a></li>
+                    <li><a href="customer/reservation.html">Table Reservation</a></li>
+                </ul>
+            </nav>
         </header>
         <section>
+            <img class="baratie-logo" id="logo" src="images/baratie_transparent.png" alt="Baratie Logo">
+            <h1 class="baratie-logo-text">The Baratie</h1>
+            <!--Hero Section-->
+            <section class="Hero">
+            <h1>Welcome to Baratie</h1>
+            <p>The Legendary Floating Restaurant of the East Blue</p>
+            <button><a href="customer/order.html">Order Now</a></button>
+        </section>
+        <section>
+            <!--About Section-->
+            <section class="about">
+                <h2>About the Baratie</h2>
+                <p>The Baratie is a world-famous sea restaurant run by master chef Zeff
+            and his talented crew. Known for gourmet dishes and lively pirate
+            hospitality, the Baratie has served sailors, travelers, and adventurers
+            from all across the East Blue.</p>
 
         </section>
-        <footer>
+        <!--Dishes--->
+        <section class="dishes">
+        <h2>Featured Dishes</h2>
+        <div class="dish-container">
+            <div class="dish">Monstrous Grilled Giant Sandora Dragon</div> <img src="images/dish5.png">
+            <div class="dish">Fried Rice with Gin</div> <img src="images/dish6.png">
+            <div class="dish">Really Really Bad (Good) Staff Soup</div> <img src="images/dish7.png">
+            <div class="dish">Hot Rock Soup</div> <img src="images/dish1.png">
+            </div>
+        </section>
 
+        <footer>
+        <p>Baratie • Floating Restaurant • East Blue</p>
         </footer>
         <script src="script.js">
         </script>
