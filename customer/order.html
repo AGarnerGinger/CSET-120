@@ -1,21 +1,379 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>Bara</title>
-        <meta charset="utf-8">
-        <link rel="stylesheet" type="text/css" href="../style.css">
-    </head>
-    <body>
-        <header>
-            <h1>HELLO</h1>
-        </header>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Baratie | Order</title>
+    <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../styles.css">
+    <style>
+        html,body{
+            height:100%;
+            margin:0;
+            font-family:"Open Sans",sans-serif;
+        }
+            
+        body{
+            background-image: url("images/ocean.jpg");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color:var(--text);
+            text-shadow: -1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000,1px 1px 0 #000;
+            padding-top:100px;
+            min-height:100vh;
+        }
+
+        .main-header{
+            position:fixed;
+            top:0;
+            left:0;
+            right:0;
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            padding:12px 24px;
+            box-sizing:border-box;
+            background: rgba(255,255,255,0.88);
+            backdrop-filter: blur(6px);
+            z-index:1200;
+        }
+
+        .main-nav.nav ul{
+            list-style:none;
+            margin:0;
+            padding:0;
+            display:flex; 
+            gap:18px; 
+            align-items:center;
+        }
+
+        .main-nav.nav a{
+            display:inline-block; 
+            text-decoration:none; 
+            color:#111; 
+            font-weight:600; 
+            padding:8px 16px; 
+            border-radius:30px; 
+            font-family:"Open Sans",sans-serif;
+        }
+
+        .main-nav.nav a:hover{
+            background:#111; 
+            color:#fff; 
+            transition:0.18s;}
+
+        .brand-left{
+            display:flex; 
+            align-items:center; 
+            gap:12px;
+        }
+
+        .navlogo{
+            height:46px; 
+            width:auto; 
+            display:block;
+        }
+
+        .band-name-large{
+            font-family:'Marcellus', serif; 
+            color:#111; 
+            margin:0; 
+            font-size:26px; 
+            letter-spacing:1px;
+        }
+
+        .container{
+            max-width:1100px; 
+            margin:40px auto; 
+            padding:24px; 
+            box-sizing:border-box;
+        }
+
+        .section-header{
+            font-family:'Marcellus', serif; 
+            font-size:30px; 
+            margin:8px 0 18px 0; 
+            color:var(--text); 
+            text-shadow:none;
+        }
+
+
+        .dish-items{
+            display:grid; 
+            grid-template-columns:repeat(2, 1fr); 
+            gap:26px;
+        
+        
+        }
+        .dish-item{
+            background: var(--glass);
+            border:1px solid var(--glass-border);
+            padding:16px;
+            border-radius:12px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            min-height:260px;
+            box-sizing:border-box;
+        }
+
+        .dish-item-title{
+            font-family:'Marcellus', serif; 
+            font-size:20px; 
+            margin:10px 0 8px 0; color:var(--text);
+        
+        }
+
+        .dish-item-image{
+            width:100%; 
+            height:170px; 
+            object-fit:cover; 
+            border-radius:8px; 
+            background:#222;
+        }
+
+        .dish-item-price{
+            font-weight:700; 
+            margin-top:10px; 
+            color:var(--muted);
+        }
+
+        .btn-order{
+            margin-top:12px; 
+            padding:10px 18px; 
+            border-radius:8px; 
+            border:none; 
+            cursor:pointer; 
+            font-weight:700; 
+            background:var(--accent); 
+            color:#111;
+        }
+
+
+        .cart-section{
+            margin-top:34px; 
+            background:rgba(0,0,0,0.18); 
+            padding:18px; 
+            border-radius:10px; 
+            border:1px solid rgba(255,255,255,0.06);
+        }
+
+        .cart-row{
+            display:flex; 
+            gap:8px; 
+            font-weight:700; 
+            margin-bottom:10px;
+
+        }
+
+        .cart-column{
+            flex:1; 
+            color:var(--muted);
+        }
+
+        .cart-items{
+            min-height:40px; 
+            margin-bottom:12px;
+        }
+
+        .cart-total{
+            display:flex; 
+            justify-content:flex-end; 
+            align-items:center; 
+            gap:12px; 
+            font-size:18px; 
+            font-weight:700; 
+            margin-top:8px;
+        }
+
+        .btn-purchase{
+            margin-top:12px; 
+            padding:12px 20px; 
+            border-radius:10px; 
+            border:none; 
+            background:var(--accent-dark); 
+            color:#111; 
+            font-weight:800; 
+            cursor:pointer;
+        }
+
+
+        footer.main-footer{
+            margin-top:40px; 
+            background:black; 
+            color:white; 
+            padding:34px 16px; 
+            text-align:center; 
+            border-top:1px solid rgba(255,255,255,0.04);
+        }
+
+
+        @media (max-width:900px){
+            .dish-items{grid-template-columns:repeat(1,1fr);}
+            .band-name-large{display:none;}
+            body{padding-top:90px;}
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="brand-left">
+            <img src="images/baratie_transparent-2.png" class="navlogo" alt="Baratie logo" onerror="this.style.display='none'">
+            <span class="band-name-large">Baratie</span>
+        </div>
+                <nav class="navbar">
+                        <div class="nav-left">
+                            <img src="images/baratie_transparent-2.png" class="navlogo">
+                            <span class="nav-title">Baratie</span>
+                        </div>
+                    <ul class="nav-links">
+                        <li><a href="">Home</a></li>
+                        <li><a href="customer/order.html">Order Now</a></li>
+                        <li><a href="customer/reservation.html">Table Reservation</a></li>
+                    </ul>
+                </nav>
+    </header>
+
+    <main class="container">
         <section>
+            <h2 class="section-header">Featured Meals</h2>
 
+            <div class="dish-items">
+                <div class="dish-item">
+                    <img class="dish-item-image" src="../images/dish1.png" alt="Seafood Curry">
+                    <div class="dish-item-title">Seafood Curry</div>
+                    <div class="dish-item-price">$14.99</div>
+                    <button class="btn-order">ADD TO ORDER</button>
+                </div>
+
+                <div class="dish-item">
+                    <img class="dish-item-image" src="../images/dish2.png" alt="Ocean Ramen">
+                    <div class="dish-item-title">Ocean Ramen</div>
+                    <div class="dish-item-price">$12.99</div>
+                    <button class="btn-order">ADD TO ORDER</button>
+                </div>
+
+                <div class="dish-item">
+                    <img class="dish-item-image" src="../images/dish3.png" alt="Fried Shrimp Plate">
+                    <div class="dish-item-title">Fried Shrimp Plate</div>
+                    <div class="dish-item-price">$10.99</div>
+                    <button class="btn-order">ADD TO ORDER</button>
+                </div>
+
+                <div class="dish-item">
+                    <img class="dish-item-image" src="../images/dish4.png" alt="Baratie Steak">
+                    <div class="dish-item-title">Baratie Steak</div>
+                    <div class="dish-item-price">$18.99</div>
+                    <button class="btn-order">ADD TO ORDER</button>
+                </div>
+
+                <div class="dish-item">
+                    <img class="dish-item-image" src="../images/dish5.png" alt="Lagoon Salad">
+                    <div class="dish-item-title">Lagoon Salad</div>
+                    <div class="dish-item-price">$8.99</div>
+                    <button class="btn-order">ADD TO ORDER</button>
+                </div>
+
+                <div class="dish-item">
+                    <img class="dish-item-image" src="../images/dish6.png" alt="Sailor's Bento">
+                    <div class="dish-item-title">Sailor's Bento</div>
+                    <div class="dish-item-price">$11.99</div>
+                    <button class="btn-order">ADD TO ORDER</button>
+                </div>
+
+                <div class="dish-item">
+                    <img class="dish-item-image" src="../images/dish7.png" alt="Fish Katsu">
+                    <div class="dish-item-title">Fish Katsu</div>
+                    <div class="dish-item-price">$9.99</div>
+                    <button class="btn-order">ADD TO ORDER</button>
+                </div>
+
+                <div class="dish-item">
+                    <img class="dish-item-image" src="../images/chef_special.png" alt="Chef Zeff's Special">
+                    <div class="dish-item-title">Chef Zeff's Special</div>
+                    <div class="dish-item-price">$21.99</div>
+                    <button class="btn-order">ADD TO ORDER</button>
+                </div>
+            </div>
         </section>
-        <footer>
 
-        </footer>
-        <script src="script.js">
-        </script>
-    </body>
+        <section class="cart-section">
+            <h2 class="section-header">Order Cart</h2>
+            <div class="cart-row">
+                <div class="cart-column">ITEM</div>
+                <div class="cart-column">PRICE</div>
+                <div class="cart-column">QUANTITY</div>
+            </div>
+            <div class="cart-items" id="cart-items"></div>
+            <div class="cart-total">
+                <div>Total:</div>
+                <div id="cart-total-price">$0.00</div>
+            </div>
+            <button class="btn-purchase" id="purchase-button">PLACE ORDER</button>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div>Baratie</div>
+    </footer>
+
+    <script>
+        (function(){
+            var buttons = document.querySelectorAll('.btn-order');
+            var cartItems = document.getElementById('cart-items');
+            var totalPriceEl = document.getElementById('cart-total-price');
+            var purchaseBtn = document.getElementById('purchase-button');
+            function parsePrice(text){
+                return parseFloat(text.replace(/[^0-9\.]/g,'')||0);
+            }
+            function updateTotal(){
+                var sum = 0;
+                var rows = cartItems.querySelectorAll('.cart-row-item');
+                rows.forEach(function(r){
+                    var price = parsePrice(r.getAttribute('data-price'));
+                    var qty = parseInt(r.querySelector('.qty-input').value) || 0;
+                    sum += price * qty;
+                });
+                totalPriceEl.textContent = '$' + sum.toFixed(2);
+            }
+            function makeRow(title, price){
+                var row = document.createElement('div');
+                row.className = 'cart-row-item';
+                row.setAttribute('data-price', price);
+                row.style.display='flex';
+                row.style.gap='8px';
+                row.style.alignItems='center';
+                row.style.padding='6px 0';
+                var col1 = document.createElement('div'); col1.style.flex='1'; col1.textContent = title;
+                var col2 = document.createElement('div'); col2.style.flex='1'; col2.textContent = price;
+                var col3 = document.createElement('div'); col3.style.flex='1';
+                var input = document.createElement('input'); input.type='number'; input.min='0'; input.value='1'; input.className='qty-input';
+                input.style.width='64px';
+                input.addEventListener('change', updateTotal);
+                var remove = document.createElement('button'); remove.textContent='Remove'; remove.style.marginLeft='8px';
+                remove.addEventListener('click', function(){ row.remove(); updateTotal(); });
+                col3.appendChild(input); col3.appendChild(remove);
+                row.appendChild(col1); row.appendChild(col2); row.appendChild(col3);
+                return row;
+            }
+            buttons.forEach(function(btn){
+                btn.addEventListener('click', function(){
+                    var card = btn.closest('.dish-item');
+                    var title = card.querySelector('.dish-item-title').textContent.trim();
+                    var price = card.querySelector('.dish-item-price').textContent.trim();
+                    cartItems.appendChild(makeRow(title, price));
+                    updateTotal();
+                });
+            });
+            purchaseBtn.addEventListener('click', function(){
+                if(cartItems.children.length === 0){ alert('Your cart is empty'); return; }
+                alert('Order placed. Total: ' + totalPriceEl.textContent);
+                cartItems.innerHTML = '';
+                updateTotal();
+            });
+        })();
+    </script>
+</body>
 </html>
