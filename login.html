@@ -1,21 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title>Baratie - Login</title>
-        <meta charset="utf-8">
-        <link rel="stylesheet" type="text/css" href="style.css">
-    </head>
-    <body>
-        <header>
-            <h1>HELLO</h1>
-        </header>
-        <section>
+<html>
+<head>
+    <title>Baratie - Login</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <header>
+    
+    </header>
+    <section class="loginpage">
+        <h3>Login Page</h3>
+        <input class="username" type="text" placeholder="Username"><br><br>
+        <input class="password" type="password" placeholder="Password"><br><br>
+        <input class="submit" type="submit" value="Login">
+        <button><a href="signup.html">Sign Up Now</a></button>
+        <p id="message"></p>
+    </section>
+    <footer>
 
-        </section>
-        <footer>
+    </footer>
+<script>
+    const usernameInput = document.querySelector(".username");
+    const passwordInput = document.querySelector(".password");
+    const submitButton = document.querySelector(".submit");
+    const message = document.getElementById("message");
 
-        </footer>
-        <script src="script.js">
-        </script>
-    </body>
+    const employeeUser = {
+        username: "employee",
+        password: "baratie"
+    };
+
+    submitButton.addEventListener("click", function(){
+
+        const storedUser = JSON.parse(localStorage.getItem("user"));
+        const username = usernameInput.value.trim();
+        const password = passwordInput.value.trim();
+
+        if(username === employeeUser.username && password === employeeUser.password){
+            message.textContent = "Welcome Employee!";
+            setTimeout(() => {
+                window.location.href = "employee/employeeindex.html";
+            }, 500);
+            return;
+        }
+
+        if(!storedUser){
+            message.textContent = "Please create an account first.";
+            return;
+        }
+
+        if(username === storedUser.username && password === storedUser.password){
+            message.textContent = `Welcome back ${username}!`;
+            setTimeout(() => {
+                window.location.href = "index.html";
+            }, 500);
+        } else {
+            message.textContent = "Incorrect information. Please try again.";
+        }
+    });
+</script>
+
+</body>
 </html>

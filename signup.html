@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sign Up Page</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <header>
+    
+    </header>
+    <section class="signuppage">
+        <h3>Sign Up Page</h3>
+        <input class="username" type="text" placeholder="Username"><br><br>
+        <input class="password" type="password" placeholder="Password"><br><br>
+        <input class="submit" type="submit" value="Sign Up">
+        <p id="message"></p>
+    </section>
+    <footer>
+
+    </footer>
+    <script>
+        const usernameInput = document.querySelector(".username");
+const passwordInput = document.querySelector(".password");
+const submitButton = document.querySelector(".submit");
+const message = document.getElementById("message");
+
+submitButton.addEventListener("click", function(){
+    const username = usernameInput.value.trim();
+    const password = passwordInput.value.trim()
+    if(!username || !password){
+        message.textContent = "Please enter both a username and password."
+    }
+
+    const user = { username, password};
+    localStorage.setItem("user", JSON.stringify(user));
+    message.textContent = "Account Sucessfully Created."
+
+    setTimeout(() => {
+        window.location.href = "login.html";
+    }, 500)
+})
+
+
+    </script>
+</body>
+</html>

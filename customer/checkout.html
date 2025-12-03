@@ -4,13 +4,37 @@
         <title>Baratie - Checkout</title>
         <meta charset="utf-8">
         <link rel="stylesheet" type="text/css" href="../style.css">
+        <style>
+
+        </style>
     </head>
     <body>
-        <header>
-            <h1>HELLO</h1>
+        <header class="main-header">
+            <nav class="navbar">
+                <div class="nav-left">
+                    <img src="../images/baratie_transparent-2.png" class="navlogo">
+                    <span class="nav-title">Baratie</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../login.html">Login</a></li>
+                    <li><a href="">Order Now</a></li>
+                    <li><a href="customer/reservation.html">Table Reservation</a></li>
+                </ul>
+            </nav>
         </header>
         <section>
-
+            <form class="">
+                <input type="radio" name="method" value="Pick-Up"><label>Pick-Up</label>
+                <input type="radio" name="method" value="Delivery"><label>Delivery</label>
+                <br><br>
+                <input type="text" placeholder="Street Adress"><br><br>
+                <input type="text" placeholder="City"><br><br>
+                <input type="text" placeholder="Zip Code"><br><br>
+                <input class="card#" type="text" placeholder="Debt/Credit Card"><br><br>
+                <input class="cvv" type="password" placeholder="CVV"><br><br>
+                <input class="exp" type="text" placeholder="Date of Expiration"><br><br>
+            </form>
         </section>
         <footer>
 

@@ -4,13 +4,62 @@
         <title>Baratie - Reservation</title>
         <meta charset="utf-8">
         <link rel="stylesheet" type="text/css" href="../style.css">
+        <style>
+            .table{
+                background-color: grey;
+                width: 300px;
+                height: 300px;
+                border: 5px solid black;
+                border-radius: 200px;
+            }
+            .table:hover{
+                background-color: green;
+            }
+            .table-row{
+                display: flex;
+                flex-direction: row;
+                justify-content: space-around;
+
+            }
+            .reserved:hover{
+                background-color: red;
+            }
+            .tables{
+                margin-top: 200px;
+            }
+            </style>
     </head>
     <body>
-        <header>
-            <h1>HELLO</h1>
-        </header>
+    <header class="main-header">
+        <nav class="navbar">
+                    <div class="nav-left">
+                        <a href="index.html"><img src="../images/baratie_transparent-2.png" class="navlogo"></a>
+                        <span class="nav-title">Baratie</span>
+                    </div>
+                    <ul class="nav-links">
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../login.html">Login</a></li>
+                        <li><a href="">Order Now</a></li>
+                        <li><a href="customer/reservation.html">Table Reservation</a></li>
+                    </ul>
+        </nav>
+    </header>
         <section>
-
+            <div class="tables">
+                <div class="table-row">
+                    <div class="table"></div>
+                    <div class="table"></div>
+                </div>
+                <div class="table-row">
+                    <div class="table"></div>
+                    <div class="table"></div>
+                    <div class="table"></div>
+                </div>
+                <div class="table-row">
+                    <div class="table"></div>
+                    <div class="table"></div>
+                </div>
+            </div>
         </section>
         <footer>
 

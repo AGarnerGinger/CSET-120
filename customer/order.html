@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta charset="utf-8">
     <title>Baratie | Order</title>
     <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../styles.css">
+    <link rel="stylesheet" type="text/css" href="../style.css">
     <style>
         html,body{
             height:100%;
@@ -18,10 +17,9 @@
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            color:var(--text);
-            text-shadow: -1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000,1px 1px 0 #000;
             padding-top:100px;
             min-height:100vh;
+            background-image: url(../images/baratieplanks.png);
         }
 
         .main-header{
@@ -94,8 +92,6 @@
             font-family:'Marcellus', serif; 
             font-size:30px; 
             margin:8px 0 18px 0; 
-            color:var(--text); 
-            text-shadow:none;
         }
 
 
@@ -117,12 +113,14 @@
             align-items:center;
             min-height:260px;
             box-sizing:border-box;
+            background:rgba(0,0,0,0.18); 
         }
 
         .dish-item-title{
             font-family:'Marcellus', serif; 
             font-size:20px; 
-            margin:10px 0 8px 0; color:var(--text);
+            margin:10px 0 8px 0;
+            color:var(--text);
         
         }
 
@@ -148,7 +146,9 @@
             cursor:pointer; 
             font-weight:700; 
             background:var(--accent); 
-            color:#111;
+            color:white;
+            color:var(--text);
+            text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
         }
 
 
@@ -194,9 +194,10 @@
             border-radius:10px; 
             border:none; 
             background:var(--accent-dark); 
-            color:#111; 
+            color:#ffffff; 
             font-weight:800; 
             cursor:pointer;
+            text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
         }
 
 
@@ -215,86 +216,91 @@
             .band-name-large{display:none;}
             body{padding-top:90px;}
         }
+        
     </style>
 </head>
 <body>
     <header class="main-header">
-        <div class="brand-left">
-            <img src="images/baratie_transparent-2.png" class="navlogo" alt="Baratie logo" onerror="this.style.display='none'">
-            <span class="band-name-large">Baratie</span>
-        </div>
-                <nav class="navbar">
-                        <div class="nav-left">
-                            <img src="images/baratie_transparent-2.png" class="navlogo">
-                            <span class="nav-title">Baratie</span>
-                        </div>
+        <nav class="navbar">
+                    <div class="nav-left">
+                        <img src="../images/baratie_transparent-2.png" class="navlogo">
+                        <span class="nav-title">Baratie</span>
+                    </div>
                     <ul class="nav-links">
-                        <li><a href="">Home</a></li>
-                        <li><a href="customer/order.html">Order Now</a></li>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../login.html">Login</a></li>
+                        <li><a href="">Order Now</a></li>
                         <li><a href="customer/reservation.html">Table Reservation</a></li>
                     </ul>
-                </nav>
+        </nav>
     </header>
 
     <main class="container">
         <section>
-            <h2 class="section-header">Featured Meals</h2>
+            <h2 class="section-header">Main Dishes</h2>
 
             <div class="dish-items">
                 <div class="dish-item">
-                    <img class="dish-item-image" src="../images/dish1.png" alt="Seafood Curry">
-                    <div class="dish-item-title">Seafood Curry</div>
+                    <img class="dish-item-image" src="../images/dish1.png" alt="hotrockstew">
+                    <div class="dish-item-title">Hot Rock Stew</div>
                     <div class="dish-item-price">$14.99</div>
                     <button class="btn-order">ADD TO ORDER</button>
+                    <!--Beef/Produce/Broth-->
                 </div>
 
                 <div class="dish-item">
-                    <img class="dish-item-image" src="../images/dish2.png" alt="Ocean Ramen">
-                    <div class="dish-item-title">Ocean Ramen</div>
+                    <img class="dish-item-image" src="../images/dish2.png" alt="chickenw/rice">
+                    <div class="dish-item-title">Chicken w/ Rice</div>
                     <div class="dish-item-price">$12.99</div>
                     <button class="btn-order">ADD TO ORDER</button>
+                    <!--Chicken/Rice-->
                 </div>
 
                 <div class="dish-item">
-                    <img class="dish-item-image" src="../images/dish3.png" alt="Fried Shrimp Plate">
-                    <div class="dish-item-title">Fried Shrimp Plate</div>
+                    <img class="dish-item-image" src="../images/dish3.png" alt="chickenonsalad">
+                    <div class="dish-item-title">Whitefish Salad</div>
                     <div class="dish-item-price">$10.99</div>
                     <button class="btn-order">ADD TO ORDER</button>
+                    <!--Fish/Produce-->
                 </div>
-
                 <div class="dish-item">
-                    <img class="dish-item-image" src="../images/dish4.png" alt="Baratie Steak">
-                    <div class="dish-item-title">Baratie Steak</div>
+                    <img class="dish-item-image" src="../images/dish4.png" alt="chickenonbone">
+                    <div class="dish-item-title">Chicken On Bone</div>
                     <div class="dish-item-price">$18.99</div>
                     <button class="btn-order">ADD TO ORDER</button>
+                    <!--Chicken-->
                 </div>
 
                 <div class="dish-item">
-                    <img class="dish-item-image" src="../images/dish5.png" alt="Lagoon Salad">
-                    <div class="dish-item-title">Lagoon Salad</div>
+                    <img class="dish-item-image" src="../images/dish5.png" alt="grilledsteak">
+                    <div class="dish-item-title">Grilled Steak</div>
                     <div class="dish-item-price">$8.99</div>
                     <button class="btn-order">ADD TO ORDER</button>
+                    <!--Beef-->
                 </div>
 
                 <div class="dish-item">
-                    <img class="dish-item-image" src="../images/dish6.png" alt="Sailor's Bento">
-                    <div class="dish-item-title">Sailor's Bento</div>
+                    <img class="dish-item-image" src="../images/dish6.png" alt="friedrice">
+                    <div class="dish-item-title">Fried Rice</div>
                     <div class="dish-item-price">$11.99</div>
                     <button class="btn-order">ADD TO ORDER</button>
+                    <!--Rice/Produce-->
                 </div>
 
                 <div class="dish-item">
-                    <img class="dish-item-image" src="../images/dish7.png" alt="Fish Katsu">
-                    <div class="dish-item-title">Fish Katsu</div>
+                    <img class="dish-item-image" src="../images/dish7.png" alt="reallygoodsoup">
+                    <div class="dish-item-title">Really Good Soup</div>
                     <div class="dish-item-price">$9.99</div>
                     <button class="btn-order">ADD TO ORDER</button>
+                    <!--Produce/Broth-->
                 </div>
 
                 <div class="dish-item">
-                    <img class="dish-item-image" src="../images/chef_special.png" alt="Chef Zeff's Special">
+                    <img class="dish-item-image" src="../images/dish8.png" alt="Chef Zeff's Special">
                     <div class="dish-item-title">Chef Zeff's Special</div>
                     <div class="dish-item-price">$21.99</div>
                     <button class="btn-order">ADD TO ORDER</button>
+                    <!--Shrimp/Produce/Noodle-->
                 </div>
             </div>
         </section>
@@ -311,7 +317,7 @@
                 <div>Total:</div>
                 <div id="cart-total-price">$0.00</div>
             </div>
-            <button class="btn-purchase" id="purchase-button">PLACE ORDER</button>
+            <button href="checkout.html" class="btn-purchase" id="purchase-button">PLACE ORDER</button>
         </section>
     </main>
 
@@ -369,7 +375,18 @@
             });
             purchaseBtn.addEventListener('click', function(){
                 if(cartItems.children.length === 0){ alert('Your cart is empty'); return; }
-                alert('Order placed. Total: ' + totalPriceEl.textContent);
+                let cartItemsStored = [];
+                let rows = cartItems.querySelectorAll(`.cart-row-item`);
+                rows.forEach(function(r){
+                    let title = r.querySelector('div:first-child').textContent;
+                    let quantity = parseInt(r.querySelector(`.qty-input`).value) || 0;
+                    cartItemsStored.push({title, quantity})
+                })
+                localStorage.setItem("customOrder", JSON.stringify(cartItemsStored))
+                let allOrders = JSON.parse(localStorage.getItem("allOrders")) || [];
+                allOrders.push(cartItemsStored);
+                localStorage.setItem("allOrders", JSON.stringify(allOrders));
+                window.location.href = "checkout.html";
                 cartItems.innerHTML = '';
                 updateTotal();
             });
