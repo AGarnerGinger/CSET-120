@@ -2,7 +2,6 @@
 body {
     margin: 0;
     padding-top: 90px;
-    background-image: url("images/ocean.jpg");
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -17,7 +16,7 @@ body {
 }
 
 
-h1, h2, h3 {
+h1, h2, h3, p{
     font-family: 'Marcellus', serif;
     letter-spacing: 2px;
 }
@@ -81,13 +80,16 @@ h1, h2, h3 {
     white-space: nowrap;
 }
 
-.nav-links li a:hover {
-    background: black;
+
+.nav-links a:hover{
+    background:black;
+    color:black;
 }
 
 body {
     padding-top: 90px;
 }
+
 
 footer {
     background-color: black;

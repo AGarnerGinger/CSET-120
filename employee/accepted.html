@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Baratie | Accepted Orders</title>
+    <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../style.css">
+
+    <style>
+        html,body{
+            height:100%;
+            margin:0;
+            font-family:"Open Sans",sans-serif;
+        }
+
+        body{
+            background-image: url(../images/baratieplanks.png);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            padding-top:100px;
+            min-height:100vh;
+        }
+
+        .navbar{
+            position:fixed;
+            top:0;
+            left:0;
+            right:0;
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            padding:12px 24px;
+            background: rgba(255,255,255,0.88);
+            backdrop-filter: blur(6px);
+            z-index:1200;
+        }
+
+        .navlogo{
+            height:46px;
+        }
+
+        .nav-links{
+            list-style:none;
+            display:flex;
+            gap:18px;
+            padding:0;
+            margin:0;
+        }
+
+        .nav-links a{
+            text-decoration:none;
+            padding:8px 16px;
+            border-radius:20px;
+            font-weight:600;
+            color:#222;
+        }
+
+        .nav-links a:hover{
+            background:black;
+            color:black;
+        }
+
+        .container{
+            max-width:1200px;
+            margin:0 auto;
+            padding:20px;
+        }
+
+        .section-header{
+            font-family:'Marcellus', serif;
+            font-size:30px;
+            margin:20px 0;
+            text-align:center;
+        }
+
+        .orders-grid{
+            display:grid;
+            grid-template-columns:repeat(3, 1fr);
+            gap:20px;
+            margin-top:20px;
+        }
+
+        .order-box{
+            border-radius:15px;
+            padding:20px;
+            box-shadow:0 4px 12px rgba(0,0,0,0.2);
+            background:rgba(0,0,0,0.18);
+        }
+
+        .order-header{
+            font-size:20px;
+            font-weight:bold;
+            margin-bottom:12px;
+        }
+
+        .order-item{
+            font-size:17px;
+            padding:4px 0;
+        }
+
+        .delete-btn {
+            float: right;
+            cursor: pointer;
+            color: #b00000;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .delete-btn:hover {
+            color: red;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<header>
+    <nav class="navbar">
+        <div class="nav-left">
+            <img src="../images/baratie_transparent-2.png" class="navlogo">
+            <span class="nav-title">Baratie</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="../index.html">Customer Home</a></li>
+            <li><a href="accepted.html">Accepted Orders</a></li>
+            <li><a href="inventory.html">Inventory</a></li>
+            <li><a href="order-manager.html">Order Management</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main class="container">
+    <h2 class="section-header">Accepted Orders</h2>
+
+    <div id="orders-grid" class="orders-grid"></div>
+</main>
+
+<footer class="main-footer">
+    <div>Baratie</div>
+</footer>
+
+<script>
+const grid = document.getElementById('orders-grid');
+
+function render() {
+    const acceptedOrders = JSON.parse(localStorage.getItem('acceptedOrders') || '[]');
+    grid.innerHTML = '';
+    if (acceptedOrders.length === 0) {
+        grid.innerHTML = '<p>No accepted orders.</p>';
+        return;
+    }
+    acceptedOrders.slice().reverse().forEach((order, revIndex) => {
+        const originalIndex = acceptedOrders.length - 1 - revIndex;
+        const orderBox = document.createElement('div');
+        orderBox.className = 'order-box';
+        orderBox.dataset.index = originalIndex;
+
+        const header = document.createElement('div');
+        header.className = 'order-header';
+        const displayNumber = revIndex + 1;
+        header.innerHTML = `Order #${displayNumber} <span class="delete-btn" data-index="${originalIndex}">✖</span>`;
+
+        orderBox.appendChild(header);
+
+        order.forEach(item => {
+            const itemEl = document.createElement('div');
+            itemEl.className = 'order-item';
+            itemEl.innerHTML = `<strong>${item.title}</strong> — Qty: ${item.quantity}`;
+            orderBox.appendChild(itemEl);
+        });
+
+        grid.appendChild(orderBox);
+    });
+}
+
+grid.addEventListener('click', (e) => {
+    const btn = e.target.closest('.delete-btn');
+    if (!btn) return;
+    const idx = parseInt(btn.getAttribute('data-index'), 10);
+    if (Number.isNaN(idx)) return;
+    const acceptedOrders = JSON.parse(localStorage.getItem('acceptedOrders') || '[]');
+    acceptedOrders.splice(idx, 1);
+    localStorage.setItem('acceptedOrders', JSON.stringify(acceptedOrders));
+    render();
+});
+
+render();
+</script>
+
+
+</body>
+</html>

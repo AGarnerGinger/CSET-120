@@ -1,11 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Baratie - Checkout</title>
         <meta charset="utf-8">
+        <title>Baratie - Checkout</title>
+        <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="../style.css">
         <style>
+            html,body{
+                height:100%;
+                margin:0;
+                font-family:"Open Sans",sans-serif;
+            }
+            body{
+                background-image: url(../images/baratieplanks.png);
+                background-size: cover;
+                background-position: center;
+                background-attachment: fixed;
+                padding-top:100px;
+                min-height:100vh;
+            }
 
+            .main-header{
+                position:fixed; 
+                top:0; 
+                left:0; 
+                right:0;
+                display:flex; 
+                align-items:center; 
+                justify-content:space-between;
+                padding:12px 24px; 
+                background: rgba(255,255,255,0.88);
+                backdrop-filter: blur(6px); 
+                z-index:1200;
+            }
+
+            .container{
+                max-width:900px; 
+                margin:40px auto; 
+                padding:24px;
+            }
+
+            .section-header{ 
+                font-family:'Marcellus', serif; 
+                font-size:26px; 
+                margin:8px 0 18px; 
+            }
+
+            .checkout-card{
+                background:rgba(0,0,0,0.18);
+                border:1px solid rgba(255,255,255,0.06);
+                padding:20px;
+                border-radius:12px;
+                box-shadow:0 6px 18px rgba(0,0,0,0.35);
+            }
+
+            .checkout-card input[type="text"], .checkout-card input[type="tel"], .checkout-card input[type="password"], .checkout-card input[type="month"], .checkout-card input[type="email"]{
+                width:100%;
+                padding:10px 12px;
+                margin:8px 0 14px;
+                border-radius:8px;
+                border:1px solid rgba(0,0,0,0.12);
+                font-size:14px;
+                box-sizing:border-box;
+                background:rgba(255,255,255,0.95);
+            }
+
+            .method-row{ 
+                display:flex; 
+                gap:14px; 
+                align-items:center; 
+                margin-bottom:14px; 
+                flex-wrap:wrap;
+            }
+
+            .method-row label{ 
+                font-weight:600;
+            }
+
+            .delivery{
+                 display:none; 
+                }
+
+            .card{ 
+                display:none; 
+                }
+
+            .btn-purchase{
+                margin-top:12px; 
+                padding:12px 20px; 
+                border-radius:10px;
+                border:none; 
+                background:var(--accent-dark); 
+                color:#fff; 
+                font-weight:800;
+                cursor:pointer; 
+                text-shadow:-1px -1px 0 #000, 1px -1px 0 #000,
+                -1px 1px 0 #000, 1px 1px 0 #000;
+            }
+
+            .btn-secondary{
+                margin-top:6px; 
+                padding:10px 14px; 
+                border-radius:8px; 
+                border:none;
+                cursor:pointer; 
+                font-weight:700; 
+                background:var(--accent); 
+                color:#fff;
+                text-shadow:-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+            }
+
+            footer.main-footer{
+                margin-top:40px; 
+                background:black; 
+                color:white; 
+                padding:34px 16px;
+                text-align:center; 
+                border-top:1px solid rgba(255,255,255,0.04);
+            }
+
+            @media (max-width:900px){
+                body{
+                    padding-top:90px;
+                }
+                .container{
+                     margin:22px; 
+                }
+            }
         </style>
     </head>
     <body>
@@ -16,30 +137,102 @@
                     <span class="nav-title">Baratie</span>
                 </div>
                 <ul class="nav-links">
-                    <li><a href="../index.html">Home</a></li>
-                    <li><a href="../login.html">Login</a></li>
-                    <li><a href="">Order Now</a></li>
-                    <li><a href="customer/reservation.html">Table Reservation</a></li>
+                    <li><a href="employee/employeeindex.html">EMPLOYEE HOME - REMOVE LATER</a></li>
+                    <li><a href="">Home</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="order.html">Order Now</a></li>
+                    <li><a href="reservation.html">Table Reservation</a></li>
                 </ul>
             </nav>
         </header>
-        <section>
-            <form class="">
-                <input type="radio" name="method" value="Pick-Up"><label>Pick-Up</label>
-                <input type="radio" name="method" value="Delivery"><label>Delivery</label>
-                <br><br>
-                <input type="text" placeholder="Street Adress"><br><br>
-                <input type="text" placeholder="City"><br><br>
-                <input type="text" placeholder="Zip Code"><br><br>
-                <input class="card#" type="text" placeholder="Debt/Credit Card"><br><br>
-                <input class="cvv" type="password" placeholder="CVV"><br><br>
-                <input class="exp" type="text" placeholder="Date of Expiration"><br><br>
-            </form>
-        </section>
-        <footer>
 
-        </footer>
-        <script src="script.js">
+        <main class="container">
+            <section class="checkout-card">
+                <h2 class="section-header">Checkout</h2>
+
+                <form action="confirm.html" id="checkout-form">
+                    <div class="method-row">
+                        <label><input type="radio" name="method" value="Pick-Up"> Pick-Up</label>
+                        <label><input type="radio" name="method" value="Delivery"> Delivery</label>
+                    </div>
+
+                    <div class="delivery">
+                <label>Street Address</label><br>
+                <input type="text" placeholder="123 Main St."><br><br>
+                <label>City</label><br>
+                <input type="text" placeholder="Lancaster"><br><br>
+                <label>Zip Code</label><br>
+                <input type="text" placeholder="XXXXX" maxlength="5" minlength="5" oninput="this.value = this.value.replace(/\D/g, '')"><br><br>
+                    </div>
+
+                    <div class="card">
+                <label>Full Name</label><br>
+                <input class="name" type="text" placeholder="John Doe"><br><br>
+                <label>Card Number</label><br>
+                <input class="card-number" type="text" placeholder="XXXX XXXX XXXX XXXX" maxlength="19" minlength="12" pattern="[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}" oninput="this.value = this.value.replace(/\D/g, '').replace(/(.{4})/g, '$1 ').trim()" required><br><br>
+                <label>CVV</label><br>
+                <input class="cvv" type="password" placeholder="XXX" maxlength="3" minlength="3" pattern="[0-9]{3}" oninput="this.value = this.value.replace(/\D/g, '')" required><br><br>
+                <label>Expiration</label><br>
+                <input class="exp" type="month" min="2025-12" max="2030-12" required><br><br>
+                <label>E-Mail Address</label><br>
+                <input class="email" type="email"  placeholder="example@email.com" required><br><br>
+                <label>Phone Number(Optional)</label><br>
+                <input class="phone" type="tel" placeholder="(123)-456-7890" pattern="\([0-9]{3}\)-[0-9]{3}-[0-9]{4}" maxlength="14" minlength="13" oninput="this.value = this.value.replace(/\D/g, '').replace(/(\d{3})(\d{3})(\d{4})/, '($1)-$2-$3')"><br><br>
+                        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+                            <input type="submit" class="btn-purchase" value="PLACE ORDER">
+                        </div>
+                    </div>
+                </form>
+            </section>
+        </main>
+
+        <footer class="main-footer"><div>Baratie</div></footer>
+
+        <script>
+            const delivery = document.querySelector(".delivery")
+            const card = document.querySelector(".card")
+            const method = document.querySelectorAll(`input[name="method"]`)
+            const address = delivery.querySelectorAll("input")
+            delivery.style.display = "none"
+            card.style.display= "none"
+            function require(inputs, required) {
+                inputs.forEach(input => {
+                if (required) {
+                    input.setAttribute("required", "true");
+                } else {
+                    input.removeAttribute("required");
+                }
+        });
+    }
+
+            method.forEach(input =>{
+                input.addEventListener("change", () =>{
+                    if (input.value === "Pick-Up" && input.checked){
+                        card.style.display = "block"
+                        delivery.style.display = "none"
+                        require(address, false)
+                    }
+                    else if (input.value === "Delivery" && input.checked){
+                        delivery.style.display = "block"
+                        card.style.display = "block"
+                        require(address, true)
+                    }
+                })
+            })
+
+            const container = document.getElementById("order-container");
+
+let latestOrder = JSON.parse(localStorage.getItem("customOrder") || "[]");
+let allOrders = JSON.parse(localStorage.getItem("allOrders") || "[]");
+
+if(latestOrder.length > 0){
+    const exists = allOrders.some(o => JSON.stringify(o) === JSON.stringify(latestOrder));
+    if(!exists){
+        allOrders.push(latestOrder);
+        localStorage.setItem("allOrders", JSON.stringify(allOrders));
+    }
+    localStorage.removeItem("customOrder");
+    }
         </script>
     </body>
 </html>

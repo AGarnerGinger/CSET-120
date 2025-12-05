@@ -8,11 +8,8 @@
 
     <style>
         html,body{
-            height:100%;
-            margin:0;
-            font-family:"Open Sans",sans-serif;
+            height:100%; margin:0; font-family:"Open Sans",sans-serif;
         }
-
         body{
             background-image: url(../images/baratieplanks.png);
             background-size: cover;
@@ -21,115 +18,76 @@
             padding-top:100px;
             min-height:100vh;
         }
-
         .navbar{
-            position:fixed;
-            top:0;
-            left:0;
-            right:0;
-            display:flex;
-            align-items:center;
-            justify-content:space-between;
-            padding:12px 24px;
-            background: rgba(255,255,255,0.88);
-            backdrop-filter: blur(6px);
-            z-index:1200;
+            position:fixed; top:0; left:0; right:0;
+            display:flex; align-items:center; justify-content:space-between;
+            padding:12px 24px; background: rgba(255,255,255,0.88);
+            backdrop-filter: blur(6px); z-index:1200;
         }
+        .navlogo{ height:46px; }
 
-        .navlogo{
-            height:46px;
-        }
-
-        .nav-links{
-            list-style:none;
-            display:flex;
-            gap:18px;
-            padding:0;
-            margin:0;
-        }
-
+        .nav-links{ list-style:none; display:flex; gap:18px; padding:0; margin:0; }
         .nav-links a{
-            text-decoration:none;
-            padding:8px 16px;
-            border-radius:20px;
-            font-weight:600;
-            color:#222;
+            text-decoration:none; padding:8px 16px; border-radius:20px;
+            font-weight:600; color:#222;
+        }
+        .nav-links a:hover{ background:black; color:white; }
+
+        .container{ max-width:900px; margin:0 auto; padding:20px; }
+        .section-header{ font-family:'Marcellus', serif; font-size:30px; margin:20px 0; }
+
+        .order-box{
+            border-radius:15px; padding:20px; margin:20px 0;
+            box-shadow:0 4px 12px rgba(0,0,0,0.2);
+            background:rgba(0,0,0,0.18);
+        }
+        .order-header{ font-size:20px; font-weight:bold; padding-bottom:8px; margin-bottom:12px; }
+        .order-item{ font-size:17px; padding:4px 0; }
+
+        .missing-badge{
+            display:inline-block;
+            background:#cc0000;
+            color:white;
+            padding:2px 8px;
+            font-size:12px;
+            border-radius:6px;
+            margin-left:6px;
+            font-weight:bold;
+        }
+        .missing-list{
+            margin-left:12px;
+            color:#ff4444;
+            font-size:14px;
+            font-weight:bold;
+        }
+
+        .order-buttons{ margin-top:12px; display:flex; gap:10px; }
+
+        .accept-btn{
+            padding:10px; border:none; font-weight:bold;
+            border-radius:10px; cursor:pointer; background-color: green; color: white;
+        }
+        .deny-btn{
+            padding:10px; border:none; font-weight:bold;
+            border-radius:10px; cursor:pointer; background-color: red; color: white;
         }
 
         .nav-links a:hover{
             background:black;
-            color:white;
-        }
-
-        .container{
-            max-width:900px;
-            margin:0 auto;
-            padding:20px;
-        }
-
-        .section-header{
-            font-family:'Marcellus', serif;
-            font-size:30px;
-            margin:20px 0;
-        }
-
-        .order-box{
-            border-radius:15px;
-            padding:20px;
-            margin:20px 0;
-            box-shadow:0 4px 12px rgba(0,0,0,0.2);
-            background:rgba(0,0,0,0.18); 
-        }
-
-        .order-header{
-            font-size:20px;
-            font-weight:bold;
-            padding-bottom:8px;
-            margin-bottom:12px;
-        }
-
-        .order-item{
-            font-size:17px;
-            padding:4px 0;
-        }
-
-        .order-buttons{
-            margin-top:12px;
-            display:flex;
-            gap:10px;
-        }
-
-        .accept-btn{
-            padding:10px;
-            border:none;
-            font-weight:bold;
-            border-radius:10px;
-            cursor:pointer;
-            background-color: green;
-            color: white;
-        }
-
-        .deny-btn{
-            padding:10px;
-            border:none;
-            font-weight:bold;
-            border-radius:10px;
-            cursor:pointer;
-            background-color: red;
-            color: white;
+            color:black;
         }
     </style>
 </head>
 
 <body>
-
 <header>
     <nav class="navbar">
         <div class="nav-left">
-            <a href="../index.html"><img src="../images/baratie_transparent-2.png" class="navlogo"></a>
+            <img src="../images/baratie_transparent-2.png" class="navlogo">
             <span class="nav-title">Baratie</span>
         </div>
         <ul class="nav-links">
+            <li><a href="../index.html">Customer Home</a></li>
             <li><a href="accepted.html">Accepted Orders</a></li>
             <li><a href="inventory.html">Inventory</a></li>
             <li><a href="order-manager.html">Order Management</a></li>
@@ -137,59 +95,127 @@
     </nav>
 </header>
 
-<main class="container">
-    <section>
-        <h2 class="section-header">Incoming Orders</h2>
-
-        <div class="external-output" id="orders-container"></div>
-
-    </section>
-</main>
-
-<footer class="main-footer">
-    <div>Baratie</div>
-</footer>
+<section class="container">
+    <h2 class="section-header">Incoming Orders</h2>
+    <div id="orders-container"></div>
+</section>
 
 <script>
-    const container = document.getElementById("orders-container");
+/*************************************************
+ * Ingredient usage map matching order.html
+ *************************************************/
+const ingredientUsage = {
+    "Hot Rock Stew": { Beef: 1, Produce: 1, Broth: 1 },
+    "Chicken w/ Rice": { Chicken: 1, Rice: 1 },
+    "Whitefish Salad": { Fish: 1, Produce: 1 },
+    "Chicken On Bone": { Chicken: 1 },
+    "Grilled Steak": { Beef: 1 },
+    "Fried Rice": { Rice: 1, Produce: 1 },
+    "Really Good Soup": { Produce: 1, Broth: 1 },
+    "Chef Zeff's Special": { Shrimp: 1, Produce: 1, Noodles: 1 }
+};
 
-    const latestOrder = JSON.parse(localStorage.getItem("customOrder") || "[]");
-    const allOrders = JSON.parse(localStorage.getItem("allOrders") || "[]");
+const ingredientList = ["Beef","Noodles","Shrimp","Chicken","Produce","Rice","Fish","Broth"];
+const ingredientIndex = ing => ingredientList.indexOf(ing);
+const loadInventory = () => JSON.parse(localStorage.getItem("stockData")) || new Array(8).fill(0);
 
-    if (latestOrder.length > 0) {
+function getMissingIngredients(dishName, qty){
+    const inv = loadInventory();
+    const miss = [];
+
+    if(!ingredientUsage[dishName]) return miss;
+
+    Object.entries(ingredientUsage[dishName]).forEach(([ing, need]) => {
+        const idx = ingredientIndex(ing);
+        if(idx === -1) return;
+
+        const required = need * qty;
+        if(inv[idx] < required){
+            miss.push(`${ing} (need ${required - inv[idx]} more)`);
+        }
+    });
+
+    return miss;
+}
+
+/*************************************************
+ * LOAD ORDERS + DISPLAY
+ *************************************************/
+const container = document.getElementById("orders-container");
+
+let latestOrder = JSON.parse(localStorage.getItem("customOrder") || "[]");
+let allOrders = JSON.parse(localStorage.getItem("allOrders") || "[]");
+
+if(latestOrder.length > 0){
+    const exists = allOrders.some(o => JSON.stringify(o) === JSON.stringify(latestOrder));
+    if(!exists){
         allOrders.push(latestOrder);
         localStorage.setItem("allOrders", JSON.stringify(allOrders));
-        localStorage.removeItem("customOrder");
+    }
+    localStorage.removeItem("customOrder");
+}
+
+container.innerHTML = "";
+
+allOrders.forEach((order, index) => {
+    let html = `
+        <div class="order-box" data-order="${index}">
+            <div class="order-header">Order #${index+1}</div>
+    `;
+
+    order.forEach(item => {
+        const missing = getMissingIngredients(item.title, item.quantity);
+
+        html += `<div class="order-item">`;
+        html += `<strong>${item.title}</strong> — Qty: ${item.quantity}`;
+
+        if(missing.length > 0){
+            html += `<span class="missing-badge">⚠ Missing</span>`;
+        }
+        html += `</div>`;
+
+        if(missing.length > 0){
+            html += `<div class="missing-list">Missing: ${missing.join(", ")}</div>`;
+        }
+    });
+
+    html += `
+        <div class="order-buttons">
+            <button class="accept-btn" data-index="${index}">ACCEPT</button>
+            <button class="deny-btn" data-index="${index}">DENY</button>
+        </div>
+        </div>
+    `;
+
+    container.innerHTML += html;
+});
+
+/*************************************************
+ * ACCEPT / DENY LOGIC
+ *************************************************/
+
+document.addEventListener("click", e => {
+    if(e.target.classList.contains("accept-btn")){
+        const i = parseInt(e.target.dataset.index);
+        const allOrders = JSON.parse(localStorage.getItem("allOrders")) || [];
+        const accepted = JSON.parse(localStorage.getItem("acceptedOrders")) || [];
+
+        accepted.push(allOrders[i]);
+        localStorage.setItem("acceptedOrders", JSON.stringify(accepted));
+
+        allOrders.splice(i,1);
+        localStorage.setItem("allOrders", JSON.stringify(allOrders));
+        location.reload();
     }
 
-    container.innerHTML = "";
-
-    allOrders.forEach((order, index) => {
-        let html = `
-            <div class="order-box">
-                <div class="order-header">Order #${index + 1}</div>
-        `;
-
-        order.forEach(item => {
-            html += `
-                <div class="order-item"><strong>${item.title}</strong> — Qty: ${item.quantity}</div>
-            `;
-        });
-
-        html += `
-                <div class="order-buttons">
-                    <button class="accept-btn" data-index="${index}">ACCEPT</button>
-                    <button class="deny-btn">DENY</button>
-                </div>
-            </div>
-        `;
-
-        container.innerHTML += html;
-
-    });
-    
-
+    if(e.target.classList.contains("deny-btn")){
+        const i = parseInt(e.target.dataset.index);
+        const allOrders = JSON.parse(localStorage.getItem("allOrders")) || [];
+        allOrders.splice(i,1);
+        localStorage.setItem("allOrders", JSON.stringify(allOrders));
+        location.reload();
+    }
+});
 </script>
-
 </body>
 </html>

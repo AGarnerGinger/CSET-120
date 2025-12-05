@@ -1,47 +1,178 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Sign Up Page</title>
     <meta charset="utf-8">
+    <title>Baratie | Sign Up</title>
+    <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="style.css">
+
+    <style>
+        html, body {
+            height:100%;
+            margin:0;
+            font-family:"Open Sans", sans-serif;
+        }
+
+        body {
+            background-image: url(images/baratieplanks.png);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            padding-top:100px;
+            min-height:100vh;
+        }
+
+        .navbar {
+            position:fixed;
+            top:0;
+            left:0;
+            right:0;
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            padding:12px 24px;
+            background: rgba(255,255,255,0.88);
+            backdrop-filter: blur(6px);
+            z-index:1200;
+        }
+
+        .navlogo {
+            height:46px;
+        }
+
+        .nav-links {
+            list-style:none;
+            display:flex;
+            gap:18px;
+            padding:0;
+            margin:0;
+        }
+
+        .nav-links a {
+            text-decoration:none;
+            padding:8px 16px;
+            border-radius:20px;
+            font-weight:600;
+            color:#222;
+        }
+
+        .nav-links a:hover {
+            background:black;
+            color:white;
+        }
+
+        .container {
+            max-width:450px;
+            margin:0 auto;
+            padding:20px;
+        }
+
+        .signup-box {
+            margin-top:30px;
+            background: rgba(0,0,0,0.18);
+            padding:25px 30px;
+            border-radius:15px;
+            box-shadow:0 4px 12px rgba(0,0,0,0.25);
+        }
+
+        .section-header {
+            font-family:'Marcellus', serif;
+            font-size:32px;
+            text-align:center;
+            margin-bottom:20px;
+            color:white;
+            text-shadow:1px 1px 3px black;
+        }
+
+        .signup-input {
+            width:100%;
+            padding:12px;
+            margin:10px 0;
+            border:none;
+            border-radius:12px;
+            background:rgba(255,255,255,0.85);
+            font-size:16px;
+        }
+
+        .signup-btn {
+            width:100%;
+            padding:12px;
+            margin-top:10px;
+            border:none;
+            border-radius:12px;
+            font-weight:bold;
+            cursor:pointer;
+            font-size:17px;
+            background:black;
+            color:white;
+        }
+
+        .signup-btn:hover {
+            background:#222;
+        }
+
+        #message {
+            margin-top:12px;
+            text-align:center;
+            font-weight:bold;
+            color:white;
+        }
+    </style>
 </head>
+
 <body>
-    <header>
-    
-    </header>
-    <section class="signuppage">
-        <h3>Sign Up Page</h3>
-        <input class="username" type="text" placeholder="Username"><br><br>
-        <input class="password" type="password" placeholder="Password"><br><br>
-        <input class="submit" type="submit" value="Sign Up">
+
+<header>
+    <nav class="navbar">
+        <div class="nav-left">
+            <img src="images/baratie_transparent-2.png" class="navlogo">
+            <span class="nav-title">Baratie</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="login.html">Back to Login</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="container">
+    <div class="signup-box">
+        <h2 class="section-header">Create Account</h2>
+
+        <input class="signup-input username" type="text" placeholder="Username">
+        <input class="signup-input password" type="password" placeholder="Password">
+
+        <button class="signup-btn submit">Sign Up</button>
+
         <p id="message"></p>
-    </section>
-    <footer>
+    </div>
+</section>
 
-    </footer>
-    <script>
-        const usernameInput = document.querySelector(".username");
-const passwordInput = document.querySelector(".password");
-const submitButton = document.querySelector(".submit");
-const message = document.getElementById("message");
+<script>
+    const usernameInput = document.querySelector(".username");
+    const passwordInput = document.querySelector(".password");
+    const submitButton = document.querySelector(".submit");
+    const message = document.getElementById("message");
 
-submitButton.addEventListener("click", function(){
-    const username = usernameInput.value.trim();
-    const password = passwordInput.value.trim()
-    if(!username || !password){
-        message.textContent = "Please enter both a username and password."
-    }
+    submitButton.addEventListener("click", function () {
+        const username = usernameInput.value.trim();
+        const password = passwordInput.value.trim();
 
-    const user = { username, password};
-    localStorage.setItem("user", JSON.stringify(user));
-    message.textContent = "Account Sucessfully Created."
+        if (!username || !password) {
+            message.textContent = "Please enter both a username and password.";
+            return;
+        }
 
-    setTimeout(() => {
-        window.location.href = "login.html";
-    }, 500)
-})
+        const user = { username, password };
+        localStorage.setItem("user", JSON.stringify(user));
+        console.log("New account created:", user);
 
+        message.textContent = "Account Successfully Created.";
 
-    </script>
+        setTimeout(() => {
+            window.location.href = "login.html";
+        }, 500);
+    });
+</script>
+
 </body>
 </html>
