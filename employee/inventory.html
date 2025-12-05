@@ -37,41 +37,12 @@
             z-index:1200;
         }
 
-        .main-nav.nav ul{
-            list-style:none;
-            margin:0;
-            padding:0;
-            display:flex; 
-            gap:18px; 
-            align-items:center;
-        }
-
-        .main-nav.nav a{
-            display:inline-block; 
-            text-decoration:none; 
-            color:#111; 
-            font-weight:600; 
-            padding:8px 16px; 
-            border-radius:30px; 
-            font-family:"Open Sans",sans-serif;
-        }
-
-        .main-nav.nav a:hover{
-            background:#111; 
-            color:#fff; 
-            transition:0.18s;}
-
         .brand-left{
             display:flex; 
             align-items:center; 
             gap:12px;
         }
 
-        .navlogo{
-            height:46px; 
-            width:auto; 
-            display:block;
-        }
 
         .band-name-large{
             font-family:'Marcellus', serif; 
@@ -231,6 +202,7 @@
                         <li><a href="accepted.html">Accepted Orders</a></li>
                         <li><a href="inventory.html">Inventory</a></li>
                         <li><a href="order-manager.html">Order Management</a></li>
+                        <li><a href="tablereservattionemployee.html">Reservations</a></li>
                     </ul>
                 </nav>
         </header>
@@ -311,22 +283,22 @@
             <h2 class="section-header">Order Cart</h2>
             <div class="cart-row">
                 <div class="cart-column">ITEM</div>
-                <div class="cart-column">PRICE</div>
+                <div class="cart-column"></div>
                 <div class="cart-column">QUANTITY</div>
             </div>
             <div class="cart-items" id="cart-items"></div>
-            <div class="cart-total">
-                <div>Total:</div>
-                <div id="cart-total-price">$0.00</div>
             </div>
             <button class="btn-purchase" id="purchase-button">PLACE ORDER</button>
         </section>
     </main>
 
-    <footer class="main-footer">
-        <div>Baratie</div>
+    <footer>
+        <div class="footer-content">
+            <p>© 2025 Baratie Restaurant · All Rights Reserved</p>
+        </div>
     </footer>
-   <script>
+    <script src="script.js"></script>
+    <script>
         let savedStock = localStorage.getItem("stockData");
         if (savedStock) {
             savedStock = JSON.parse(savedStock);

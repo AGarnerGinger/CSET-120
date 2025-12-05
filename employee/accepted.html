@@ -10,7 +10,6 @@
         html,body{
             height:100%;
             margin:0;
-            font-family:"Open Sans",sans-serif;
         }
 
         body{
@@ -20,45 +19,6 @@
             background-attachment: fixed;
             padding-top:100px;
             min-height:100vh;
-        }
-
-        .navbar{
-            position:fixed;
-            top:0;
-            left:0;
-            right:0;
-            display:flex;
-            align-items:center;
-            justify-content:space-between;
-            padding:12px 24px;
-            background: rgba(255,255,255,0.88);
-            backdrop-filter: blur(6px);
-            z-index:1200;
-        }
-
-        .navlogo{
-            height:46px;
-        }
-
-        .nav-links{
-            list-style:none;
-            display:flex;
-            gap:18px;
-            padding:0;
-            margin:0;
-        }
-
-        .nav-links a{
-            text-decoration:none;
-            padding:8px 16px;
-            border-radius:20px;
-            font-weight:600;
-            color:#222;
-        }
-
-        .nav-links a:hover{
-            background:black;
-            color:black;
         }
 
         .container{
@@ -127,6 +87,7 @@
             <li><a href="accepted.html">Accepted Orders</a></li>
             <li><a href="inventory.html">Inventory</a></li>
             <li><a href="order-manager.html">Order Management</a></li>
+            <li><a href="tablereservattionemployee.html">Reservations</a></li>
         </ul>
     </nav>
 </header>
@@ -137,9 +98,11 @@
     <div id="orders-grid" class="orders-grid"></div>
 </main>
 
-<footer class="main-footer">
-    <div>Baratie</div>
-</footer>
+    <footer>
+        <div class="footer-content">
+            <p>© 2025 Baratie Restaurant · All Rights Reserved</p>
+        </div>
+    </footer>
 
 <script>
 const grid = document.getElementById('orders-grid');
@@ -188,6 +151,7 @@ grid.addEventListener('click', (e) => {
 
 render();
 </script>
+<script src="script.js"></script>
 
 
 </body>

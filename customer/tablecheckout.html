@@ -151,107 +151,38 @@
                 <h2 class="section-header">Checkout</h2>
 
                 <form action="../index.html" id="checkout-form">
-                    <div class="method-row">
-                        <label><input type="radio" name="method" value="Pick-Up"> Pick-Up</label>
-                        <label><input type="radio" name="method" value="Delivery"> Delivery</label>
-                    </div>
-
-                    <div class="delivery">
-                <label>Street Address</label><br>
-                <input type="text" placeholder="123 Main St."><br><br>
-                <label>City</label><br>
-                <input type="text" placeholder="Lancaster"><br><br>
-                <label>Zip Code</label><br>
-                <input type="text" placeholder="XXXXX" maxlength="5" minlength="5" oninput="this.value = this.value.replace(/\D/g, '')"><br><br>
-                    </div>
-
-                    <div class="card">
-                <label>Full Name</label><br>
-                <input class="name" type="text" placeholder="John Doe"><br><br>
-                <label>Card Number</label><br>
-                <input class="card-number" type="text" placeholder="XXXX XXXX XXXX XXXX" maxlength="19" minlength="15" pattern="[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}" oninput="this.value = this.value.replace(/\D/g, '').replace(/(.{4})/g, '$1 ').trim()" required><br><br>
-                <label>CVV</label><br>
-                <input class="cvv" type="password" placeholder="XXX" maxlength="3" minlength="3" pattern="[0-9]{3}" oninput="this.value = this.value.replace(/\D/g, '')" required><br><br>
-                <label>Expiration</label><br>
-                <input class="exp" type="month" min="2025-12" max="2030-12" required><br><br>
-                <label>E-Mail Address</label><br>
-                <input class="email" type="email"  placeholder="example@email.com" required><br><br>
-                <label>Phone Number(Optional)</label><br>
-                <input class="phone" type="tel" placeholder="(123)-456-7890" pattern="\([0-9]{3}\)-[0-9]{3}-[0-9]{4}" maxlength="14" minlength="13" oninput="this.value = this.value.replace(/\D/g, '').replace(/(\d{3})(\d{3})(\d{4})/, '($1)-$2-$3')"><br><br>
-                        <div style="display:flex; gap:12px; flex-wrap:wrap;">
-                            <input type="submit" class="btn-purchase" value="PLACE ORDER">
-                        </div>
-                    </div>
+                    <label>Full Name</label><br>
+                    <input type="text" placeholder="John Doe" required><br><br>
+                    <label>Number of People</label><br>
+                    <input type="number" placeholder="4" min="1" max="10" oninput="this.value = this.value.replace(/\D/g, '')" required><br><br>
+                    <label>Arrival Time</label><br>
+                    <input id="time" type="time" required><br><br>
+                    <input type="submit" class="btn-purchase" value="RESERVE TABLE">
                 </form>
             </section>
         </main>
+    <script src="../script.js"></script>
+    <script>
+  function setTimeRange() {
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const currentTime = `${hours}:${minutes}`;
+    const later = new Date(now.getTime() + 2 * 60 * 60 * 1000);
+    const laterHours = String(later.getHours()).padStart(2, '0');
+    const laterMinutes = String(later.getMinutes()).padStart(2, '0');
+    const maxTime = `${laterHours}:${laterMinutes}`;
+    const input = document.getElementById("time");
+    input.min = currentTime;
+    input.max = maxTime;
+  }
+  setTimeRange();
 
-        <script>
-            const delivery = document.querySelector(".delivery")
-            const card = document.querySelector(".card")
-            const method = document.querySelectorAll(`input[name="method"]`)
-            const address = delivery.querySelectorAll("input")
-            delivery.style.display = "none"
-            card.style.display= "none"
-            function require(inputs, required) {
-                inputs.forEach(input => {
-                if (required) {
-                    input.setAttribute("required", "true");
-                } else {
-                    input.removeAttribute("required");
-                }
-        });
-    }
-
-            method.forEach(input =>{
-                input.addEventListener("change", () =>{
-                    if (input.value === "Pick-Up" && input.checked){
-                        card.style.display = "block"
-                        delivery.style.display = "none"
-                        require(address, false)
-                    }
-                    else if (input.value === "Delivery" && input.checked){
-                        delivery.style.display = "block"
-                        card.style.display = "block"
-                        require(address, true)
-                    }
-                })
-            })
-
-            const container = document.getElementById("order-container");
-
-let latestOrder = JSON.parse(localStorage.getItem("customOrder") || "[]");
-let allOrders = JSON.parse(localStorage.getItem("allOrders") || "[]");
-
-if(latestOrder.length > 0){
-    const exists = allOrders.some(o => JSON.stringify(o) === JSON.stringify(latestOrder));
-    if(!exists){
-        allOrders.push(latestOrder);
-        localStorage.setItem("allOrders", JSON.stringify(allOrders));
-    }
-    localStorage.removeItem("customOrder");
-    }
-
-    const form = document.getElementById("checkout-form");
-
-    form.addEventListener("submit", function(event) {
-        event.preventDefault(); 
-        localStorage.setItem("orderSuccess", "true"); 
-        window.location.href = "../index.html";
-    });
-
-    const form2 = document.getElementById("checkout-form");
-
-    form2.addEventListener("submit", function(event) {
-    event.preventDefault();
-
-    let latestOrder = JSON.parse(localStorage.getItem("customOrder") || "[]");
-
-    localStorage.setItem("orderToPrint", JSON.stringify(latestOrder));
-
-    window.location.href = "../index.html";
+  document.getElementById("checkout-form").addEventListener("submit", function () {
+    localStorage.setItem("reservationSuccess", "true");
 });
-        </script>
-        <script src="../script.js"></script>
+
+</script>
+
     </body>
 </html>

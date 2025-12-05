@@ -7,12 +7,6 @@
     <link rel="stylesheet" type="text/css" href="style.css">
 
     <style>
-        html, body {
-            height:100%;
-            margin:0;
-            font-family:"Open Sans", sans-serif;
-        }
-
         body {
             background-image: url(images/baratieplanks.png);
             background-size: cover;
@@ -20,45 +14,6 @@
             background-attachment: fixed;
             padding-top:100px;
             min-height:100vh;
-        }
-
-        .navbar {
-            position:fixed;
-            top:0;
-            left:0;
-            right:0;
-            display:flex;
-            align-items:center;
-            justify-content:space-between;
-            padding:12px 24px;
-            background: rgba(255,255,255,0.88);
-            backdrop-filter: blur(6px);
-            z-index:1200;
-        }
-
-        .navlogo {
-            height:46px;
-        }
-
-        .nav-links {
-            list-style:none;
-            display:flex;
-            gap:18px;
-            padding:0;
-            margin:0;
-        }
-
-        .nav-links a {
-            text-decoration:none;
-            padding:8px 16px;
-            border-radius:20px;
-            font-weight:600;
-            color:#222;
-        }
-
-        .nav-links a:hover {
-            background:black;
-            color:white;
         }
 
         .container {
@@ -139,12 +94,6 @@
             margin-top:-70px;
             text-shadow:1px 1px 3px black;
         }
-
-        
-        .nav-links a:hover{
-            background:black;
-            color:black;
-        }
     </style>
 </head>
 
@@ -180,7 +129,6 @@
         <p id="message"></p>
     </div>
 </section>
-
 <script>
     const usernameInput = document.querySelector(".username");
     const passwordInput = document.querySelector(".password");
@@ -216,6 +164,8 @@
 
             localStorage.setItem("loggedInUser", username);
 
+            localStorage.setItem("loggedIn", "true");
+
             setTimeout(() => {
                 window.location.href = "index.html";
             }, 500);
@@ -233,6 +183,7 @@
         accountInfo.textContent = "No account has been created yet.";
     }
 </script>
+
 
 </body>
 </html>

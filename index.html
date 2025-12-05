@@ -10,16 +10,10 @@
             body{
                 background-image: url("images/ocean.jpg");
             }
+
             .logo-wrap {
                 width: 100%;
                 padding-top: 40px;
-            }
-
-            .headernav ul li a, .headernav ul li{
-                background-color: white;
-                padding: 5px 10px 5px 10px;
-                margin: 0 10px 0 10px;
-                border-radius: 40px;
             }
 
             textPath{
@@ -143,7 +137,7 @@
                     <ul class="nav-links">
                         <li><a href="employee/employeeindex.html">EMPLOYEE HOME - REMOVE LATER</a></li>
                         <li><a href="">Home</a></li>
-                        <li><a href="login.html">Login</a></li>
+                        <li><a id="loginLink" href="login.html">Login</a></li>
                         <li><a href="customer/order.html">Order Now</a></li>
                         <li><a href="customer/reservation.html">Table Reservation</a></li>
                     </ul>
@@ -223,10 +217,29 @@
                 </div>
             </div>
         </div>
-        <footer>
-            <h1>FOOTER - UNFINISHED</h1>
-        </footer>
-
+    </section>
+    <footer>
+        <div class="footer-content">
+            <p>© 2025 Baratie Restaurant · All Rights Reserved</p>
+        </div>
+    </footer>
         <script src="script.js"></script>
+        <script>
+        document.addEventListener("DOMContentLoaded", function() {
+        if (localStorage.getItem("reservationSuccess") === "true") {
+        alert("Your table has been reserved");
+        localStorage.removeItem("reservationSuccess");
+        }   
+        });
+
+        document.addEventListener("DOMContentLoaded", function() {
+        if (localStorage.getItem("orderSuccess") === "true") {
+        alert("Your order has been placed");
+        localStorage.removeItem("orderSuccess");
+        }
+        });
+
+</script>
+
     </body>
 </html>
